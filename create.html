@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Responsify Campaign Launch</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <style type="text/css">
+    
+    @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+    html {
+      font-family: 'Source Sans Pro', sans-serif;
+      height: 100%;
+    }
+    body {
+      margin-bottom: 100px;
+    }
+    h1, h2, h3, h4, h5, h6, p {
+      font-weight: normal;
+    }
+    .main {
+      width: 100%;
+      padding: 33px 133px;
+    }
+    .heading {
+      font-weight: normal;
+      margin-top: 33px;
+      margin-bottom: 63px;
+    }
+    .select_dropdowns {
+      display: flex;
+      flex-direction: column;
+    }
+    .select_line {
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .select_line select {
+      width: 369px;
+    }
+    .scrollable-section {
+      overflow-x: scroll;
+    }
+    .section {
+      margin-bottom: 69px;
+    }
+
+    .section h3 {
+      margin-bottom: 28px;
+    }
+
+    .campaign-section {
+      width: 100%;
+    }
+
+    .campaign-form {
+      width: 50%;
+    }
+
+    .long-row {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .long-row div {
+      flex-basis: 50%;
+      flex-wrap: nowrap;
+    }
+
+    .button-box {
+      display: flex;
+      flex-direction: row;
+      padding-left: 7px;
+    }
+
+    .button-box input {
+      margin: 0 7px;
+    }
+
+    .content-row {
+      display: flex;
+      flex-direction: row;
+      width: 4000px;
+      text-align: center;
+      align-items: center;
+    }
+
+    .content-row .col-header {
+      flex-wrap: nowrap;
+      width: 130px;
+      flex-shrink: 0;
+      color: #ccc;
+      font-size: 14px;
+      text-align: right;
+      padding-right: 12px;
+      
+    }
+
+    .content-row .col-title {
+      width: 700px;
+      flex-wrap: nowrap;  
+    }
+    .content-row .col-type {
+      width: 300px;
+      flex-wrap: nowrap;  
+    }
+    .content-row .col-keyword {
+      width: 300px;
+      flex-wrap: nowrap;  
+    }
+    .content-row .col-email {
+      width: 700px;
+      flex-wrap: nowrap;  
+    }
+    .content-row .col-social {
+      width: 1200px;
+      flex-wrap: nowrap;  
+    }
+
+
+    .content-row-headers {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .assignment-section .form-group {
+      display: flex;
+      padding: 0 10px;
+    }
+
+    .create-button input {
+      height: 60px;
+      width: 330px;
+    }
+
+  </style>
+</head>
+
+
+
+<body>
+
+  <div class="main">
+    
+    <div class="heading">
+      <h1>Campaign Creation Template</h1>
+    </div>
+
+    <div class="select_dropdowns">
+      <div class="select_line">
+        <div class="form-group">
+          <select id='company_select' name='company_select' class='form-control'>
+            <option value='-1'> Select which company you would like to on</option>
+          </select>
+        </div>
+   <!--     <div class="form-group">
+          <label for='add_company' style='color: #cccccc'>Add a new company</label>
+          <input type="button" class="btn btn-outline-info" name="add_company" value="+" id='add_company' disabled>
+        </div>   -->
+      </div>
+      <div class="select_line">
+        <div class='form-group'>
+          <select id='campaign_select' name='campaign_select' class='form-control' placeholder='Select which campaign you would like to edit' disabled>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="add_campaign">Begin a new campaign</label>
+          <input type="button" class="btn btn-outline-info" name="add_campaign" value="+" id='add_campaign' disabled>
+        </div>
+      </div>      
+      <!--      <div class="select_line">
+        <div class="form-group">
+          <select id='company_select' name='company_select' class='form-control'>
+            <option value='-1'> Select which company you would like to on</option>
+          </select>
+        </div>
+        <div class="form-group d-inline-flex">
+          <input type='text' class='form-control' name='new_company_name' placeholder='Add a new company' id='new_company_name'>
+          <input type="button" class="btn btn-outline-info" name="add_company" value="+" id='add_company'>
+        </div>
+      </div>
+      <div class="select_line">
+        <div class='form-group'>
+          <select id='campaign_select' name='campaign_select' class='form-control' placeholder='Select which campaign you would like to edit' disabled>
+          </select>
+        </div>
+        <div class="form-group d-inline-flex">
+          <input type='text' class='form-control' name='new_campaign_name' placeholder='Add a new campaign' id='new_campaign_name'>
+          <input type="button" class="btn btn-outline-info" name="add_campaign" value="+" id='add_campaign'>
+        </div>
+      </div>   -->
+    </div>
+    
+
+
+
+
+    <div id='forms_display'>
+      <!-- <form id='campaign' action="https://script.google.com/macros/s/AKfycbxEn59RDHZmCUoa4lGu-io7h-q1m2gFWAbvjF5Z7cQxTfsS0Ro/exec"> -->
+      <form id='campaign'>
+
+        <div class="campaign-section section">
+          
+          <h3>Campaign Section</h3>
+          
+          <div class="form-group campaign-form">  
+            <label for='campaign_name'>Campaign Name</label>
+            <input class='form-control' type="text" id="campaign_name" name="campaign_name">
+          </div>     
+          
+          <div class="form-group campaign-form">
+            <label for='persona_name'>Persona name</label>
+            <input class='form-control' type="text" id="persona_name" name="persona_name">
+          </div>
+          
+          <div class="form-group campaign-form">
+            <label for='persona_link'>Persona Link</label>
+            <input class='form-control' type="text" id="persona_link" name="persona_link">
+          </div>
+          
+          <div class="form-group campaign-form">
+            <label for='buyers_stage'>Buyer's Journey</label>
+            <select class="form-control" id="buyers_stage" name="buyers_stage">
+              <option>Awareness</option>
+              <option>Consideration</option>
+              <option>Decision</option>
+              <option>Delight</option>
+            </select>
+          </div>  
+          
+          <div class="form-group campaign-form">
+            <label for='style_guide_link'>Editorial Style Guide Link</label>
+            <input class='form-control' type="text" id="style_guide_link" name="style_guide_link">
+          </div>
+          
+          <div class="form-group campaign-form">
+            <label for='brand_identity_link'>Brand Identity Guide Link</label>
+            <input class='form-control' type="text" id="brand_identity_link" name="brand_identity_link">
+          </div>
+          
+          <div class="form-group campaign-form">
+            <label for='writing_tone_1'>Writing Tone 1</label>
+            <select id = "writingTone1" class="form-control" id="writing_tone_1" name="writing_tone_1">
+              <option>Authoritative</option>
+              <option>Caring</option>
+              <option>Cheerful</option>
+              <option>Coarse</option>
+              <option>Conservative</option>
+              <option>Conversational</option>
+              <option>Casual</option>
+              <option>Dry</option>
+              <option>Edgy</option>
+              <option>Enthusiastic</option>
+              <option>Formal</option>
+              <option>Frank</option>
+              <option>Friendly</option>
+              <option>Fun</option>
+              <option>Funny</option>
+              <option>Helpful</option>
+              <option>Humorous</option>
+              <option>Informative</option>
+              <option>Irreverent</option>
+              <option>Matter-of-fact</option>
+              <option>Nostalgic</option>
+              <option>Passionate</option>
+              <option>Playful</option>
+              <option>Practical</option>
+              <option>Professional</option>
+              <option>Provocative</option>
+              <option>Quirky</option>
+              <option>Respectful</option>
+              <option>Serious</option>
+              <option>Smart</option>
+              <option>Sympathetic</option>
+              <option>Trendy</option>
+              <option>Trustworthy</option>
+              <option>Unapologetic</option>
+              <option>Upbeat</option>
+              <option>Witty</option>
+            </select>
+          </div>  
+          <div class="form-group campaign-form">
+            <label for='writing_tone_2'>Writing Tone 2</label>
+            <select id = "writingTone2" class="form-control" id="writing_tone_2" name="writing_tone_2">
+              <option>Authoritative</option>
+              <option>Caring</option>
+              <option>Cheerful</option>
+              <option>Coarse</option>
+              <option>Conservative</option>
+              <option>Conversational</option>
+              <option>Casual</option>
+              <option>Dry</option>
+              <option>Edgy</option>
+              <option>Enthusiastic</option>
+              <option>Formal</option>
+              <option>Frank</option>
+              <option>Friendly</option>
+              <option>Fun</option>
+              <option>Funny</option>
+              <option>Helpful</option>
+              <option>Humorous</option>
+              <option>Informative</option>
+              <option>Irreverent</option>
+              <option>Matter-of-fact</option>
+              <option>Nostalgic</option>
+              <option>Passionate</option>
+              <option>Playful</option>
+              <option>Practical</option>
+              <option>Professional</option>
+              <option>Provocative</option>
+              <option>Quirky</option>
+              <option>Respectful</option>
+              <option>Serious</option>
+              <option>Smart</option>
+              <option>Sympathetic</option>
+              <option>Trendy</option>
+              <option>Trustworthy</option>
+              <option>Unapologetic</option>
+              <option>Upbeat</option>
+              <option>Witty</option>
+            </select>
+          </div>  
+          <div class="form-group campaign-form">
+            <label for='writing_tone_3'>Writing Tone 3</label>
+            <select id = "writingTone3" class="form-control" id="writing_tone_3" name="writing_tone_3">
+              <option>Authoritative</option>
+              <option>Caring</option>
+              <option>Cheerful</option>
+              <option>Coarse</option>
+              <option>Conservative</option>
+              <option>Conversational</option>
+              <option>Casual</option>
+              <option>Dry</option>
+              <option>Edgy</option>
+              <option>Enthusiastic</option>
+              <option>Formal</option>
+              <option>Frank</option>
+              <option>Friendly</option>
+              <option>Fun</option>
+              <option>Funny</option>
+              <option>Helpful</option>
+              <option>Humorous</option>
+              <option>Informative</option>
+              <option>Irreverent</option>
+              <option>Matter-of-fact</option>
+              <option>Nostalgic</option>
+              <option>Passionate</option>
+              <option>Playful</option>
+              <option>Practical</option>
+              <option>Professional</option>
+              <option>Provocative</option>
+              <option>Quirky</option>
+              <option>Respectful</option>
+              <option>Serious</option>
+              <option>Smart</option>
+              <option>Sympathetic</option>
+              <option>Trendy</option>
+              <option>Trustworthy</option>
+              <option>Unapologetic</option>
+              <option>Upbeat</option>
+              <option>Witty</option>
+            </select>
+          </div>  
+          <div class="form-group campaign-form">
+            <label for='campaign_description'>Campaign Description</label>
+            <textarea class='form-control' style='min-height:69px;' type="textarea" id="campaign_description" name="campaign_description"></textarea> 
+          </div>
+          
+          <div class="form-group campaign-form">
+            <label for='campaign_goal'>Campaign Goal</label>
+            <textarea class='form-control' style='min-height:69px;' type="text" id="campaign_goal" name="campaign_goal"></textarea>
+          </div>
+  
+        </div>
+  
+      </form>
+  
+      <form id='content'>
+  
+          <div class="content-section section">
+            <h3>Content Section</h3>
+              <div class="scrollable-section">
+                <div class="content-row content-row-headers">
+                  <div class="col-header">
+                   <!--  <p class="content-header">Blog Post #1</p> -->
+                  </div>
+                  <div class="col-title">
+                    <p class="header">Title</p>
+                  </div>
+                  <div class="col-type">
+                    <p class="header">Content Type</p>
+                  </div>
+                  <div class="col-keyword">
+                    <p class="header">Primary Keyword</p>
+                  </div>
+                  <div class="col-email">
+                    <p class="header">Email Subject Line</p>
+                  </div>
+                  <div class="col-social">
+                    <p class="header">Social Headline</p>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="col-header">
+                    <p>Blog Post #1</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="title_1" name="title_1">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_1" name="type_1">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="primary_keyword_1" name="primary_keyword_1">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="email_subject_1" name="email_subject_1">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_1" name="social_1">
+                    </div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="col-header">
+                    <p>Blog Post #2</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="title_2" name="title_2">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_2" name="type_2">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="primary_keyword_2" name="primary_keyword_2">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="email_subject_2" name="email_subject_2">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_2" name="social_2">
+                    </div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="col-header">
+                    <p>Blog Post #3</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="title_3" name="title_3">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_3" name="type_3">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="primary_keyword_3" name="primary_keyword_3">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="email_subject_3" name="email_subject_3">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_3" name="social_3">
+                    </div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="col-header">
+                    <p>Blog Post #4</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class="form-control" type="text" id="title_4" name="title_4">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_4" name="type_4">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class="form-control" type="text" id="primary_keyword_4" name="primary_keyword_4">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class="form-control" type="text" id="email_subject_4" name="email_subject_4">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_4" name="social_4">
+                    </div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="col-header">
+                    <p>Blog Post #5</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="title_5" name="title_5">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_5" name="type_5">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="primary_keyword_5" name="primary_keyword_5">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="email_subject_5" name="email_subject_5">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_5" name="social_5">
+                    </div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="col-header">
+                    <p>Blog Post #6</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="title_6" name="title_6">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_6" name="type_6">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="primary_keyword_6" name="primary_keyword_6">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="email_subject_6" name="email_subject_6">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_6" name="social_6">
+                    </div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="col-header">
+                    <p>Blog Post #7</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="title_7" name="title_7">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_7" name="type_7">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="primary_keyword_7" name="primary_keyword_7">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="email_subject_7" name="email_subject_7">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_7" name="social_7">
+                    </div>
+                  </div>
+                </div>
+                <div class="content-row">
+         
+                  <div class="col-header">
+                    <p>Blog Post #8</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="title_8" name="title_8">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_8" name="type_8">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="primary_keyword_8" name="primary_keyword_8">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="email_subject_8" name="email_subject_8">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_8" name="social_8">
+                    </div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="col-header">
+                    <p>Blog Post #9</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="title_9" name="title_9">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_9" name="type_9">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="primary_keyword_9" name="primary_keyword_9">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="email_subject_9" name="email_subject_9">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_9" name="social_9">
+                    </div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="col-header">
+                    <p>Blog Post #10</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="title_10" name="title_10">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_10" name="type_10">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="primary_keyword_10" name="primary_keyword_10">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="email_subject_10" name="email_subject_10">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_10" name="social_10">
+                    </div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="col-header">
+                    <p>Blog Post #11</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="title_11" name="title_11">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_11" name="type_11">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="primary_keyword_11" name="primary_keyword_11">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="email_subject_11" name="email_subject_11">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_11" name="social_11">
+                    </div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="col-header">
+                    <p>Blog Post #12</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="title_12" name="title_12">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_12" name="type_12">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="primary_keyword_12" name="primary_keyword_12">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="email_subject_12" name="email_subject_12">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_12" name="social_12">
+                    </div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="col-header">
+                    <p>eBook #1</p>
+                  </div>
+                  <div class="col-title">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="title_13" name="title_13">
+                    </div>
+                  </div>
+                  <div class="col-type">
+                    <div class="form-group">
+                      <select class='form-control content-type' id="type_13" name="type_13">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-keyword">            
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="primary_keyword_13" name="primary_keyword_13">
+                    </div>
+                  </div>
+                  <div class="col-email">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="email_subject_13" name="email_subject_13">
+                    </div>
+                  </div>
+                  <div class="col-social">
+                    <div class="form-group">
+                      <input class='form-control' type="text" id="social_13" name="social_13">
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </form>
+  
+  
+        <form id='assignees'>
+  
+          <div class="assignment-section section">
+            <h3>Assignment Section</h3>
+            <div>
+              <div class="form-group">
+                <select class='form-control role' id="role_1" name="role_1">
+                </select>
+                <select class='form-control user' id="user_1" name="user_1">
+                </select>
+              </div>
+              <div class="form-group">
+                <select class='form-control role' id="role_2" name="role_2">
+                </select>
+                <select class='form-control user' id="user_2" name="user_2">
+                </select>
+              </div>
+              <div class="form-group">
+                <select class='form-control role ' id="role_3" name="role_3">
+                </select>
+                <select class='form-control user' id="user_3" name="user_3">
+                </select>
+              </div>
+              <div class="form-group">
+                <select class='form-control role' id="role_4" name="role_4">
+                </select>
+                <select class='form-control user' id="user_4" name="user_4">
+                </select>
+              </div>
+              <div class="form-group">
+                <select class='form-control role' id="role_5" name="role_5">
+                </select>
+                <select class='form-control user' id="user_5" name="user_5">
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <select class='form-control role' id="role_6" name="role_6">
+                </select>
+                <select class='form-control user' id="user_6" name="user_6">
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+        
+        
+        <div class="create-button">
+          <input id='submit' type="submit" class="btn btn-success" value="Ready for campaign launch">
+        </div>
+      
+      </div>
+      
+     <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            
+              <!-- Modal body -->
+              <div class="modal-body">
+                Working...
+              </div>
+                
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="finishedModal">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              
+                <!-- Modal body -->
+              <div class="modal-body">
+                Finished...
+              </div>
+                
+            </div>
+          </div>
+        </div>
+
+    </div>
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    
+    var forms_display = document.getElementById('forms_display');
+
+    forms_display.style.display = 'none';
+
+    var campaign_form = document.getElementById('campaign');
+    var content_form = document.getElementById('content');
+    var assignees_form = document.getElementById('assignees');
+    
+    var company_select = document.getElementById('company_select');
+    var campaign_select = document.getElementById('campaign_select');
+    
+    var camp_elems = campaign_form.elements;
+    var cont_elems = content_form.elements;
+    var ass_elems = assignees_form.elements;
+    
+    var field_names_array = [];
+    var elems = [];
+    
+    var i;
+    var length;
+      
+    length = camp_elems.length;
+    for (i=0;i<length;i++) {
+       if (camp_elems[i].nodeName == 'BUTTON') {
+        continue;
+      }
+      field_names_array.push(camp_elems[i].id);
+      elems.push(camp_elems[i])
+    }  
+    length = cont_elems.length;
+    for (i=0;i<length;i++) {
+      if (cont_elems[i].nodeName == 'BUTTON') {
+        continue;
+      }
+      field_names_array.push(cont_elems[i].id);
+      elems.push(cont_elems[i])
+    }  
+    length = ass_elems.length;
+    for (i=0;i<length;i++) {
+      if (ass_elems[i].nodeName == 'BUTTON') {
+        continue;
+      }
+      field_names_array.push(ass_elems[i].id);
+      elems.push(ass_elems[i]);
+    } 
+    
+    window.addEventListener('load', function(e){
+      google.script.run.withSuccessHandler(append_companies).get_all_companies();
+      google.script.run.withSuccessHandler(appendData).getData();
+    });
+    
+    function append_companies(companies) {
+      var i;
+      var length = companies.length;
+      for (i=0;i<length;i++) {
+        var company = companies[i];
+        
+        var option = document.createElement('option');
+        option.value = company.id;
+        option.innerText = company.name;
+        
+        company_select.appendChild(option);
+      }
+    }
+    
+    function change_campaign_create(e) {
+      
+      var c_id = campaign_select.value;
+      if (c_id == -1) {
+        return;
+      }
+      if (e.target.type == 'text' || e.target.nodeName == 'TEXTAREA') {
+        google.script.run.withSuccessHandler(function(res){console.log(res)}).change_campaign_create(c_id, e.target.id, e.target.value);
+      } else if (e.target.type == 'select-one') {
+        google.script.run.withSuccessHandler(function(res){console.log(res)}).change_campaign_create(c_id, e.target.id, e.target.value);
+      } else (console.log('something else to look at'))
+    };
+    document.getElementById('add_campaign').addEventListener('click', function(e) {
+      var comp_id = company_select.value;
+      if (comp_id != -1) {
+        $('#myModal').modal("show"); 
+        
+        google.script.run.withSuccessHandler(function(launch_id){
+          
+          var manual = new Event('change');
+          
+          company_select.dispatchEvent(manual);
+          $('#myModal').modal("show"); 
+          setTimeout(function(){
+            var select_last = campaign_select.options.length - 1;
+            campaign_select.selectedIndex = select_last;
+            campaign_select.dispatchEvent(manual);
+          }, 1500);
+
+        }).add_campaign_launch(comp_id);
+      } else {
+        window.alert('Please select a company first, before you try to add a new campaign.');
+      }
+    })
+//    document.getElementById('add_company').addEventListener('click', function(e) {
+//      if (this.value != -1) {
+//        window.alert('This does not work currently.');
+//      } else {
+//        window.alert('This does not work currently.');
+//      }
+//    })
+    company_select.addEventListener('change', function(e){
+      document.getElementById('forms_display').style.display = 'none';
+      
+      if (e.target.value != -1) {
+        
+        //populate campaign select with campaigns of company
+        $('#myModal').modal("show"); 
+        
+        var selected = this.value;
+
+        google.script.run.withSuccessHandler(function(campaigns){
+          
+          campaign_select.innerHTML = null;
+          campaign_select.disabled = null;
+          add_campaign.disabled = null;
+          
+          var opt = document.createElement('option');
+          opt.value = -1;
+          opt.innerText = 'Select which campaign you would like to edit';
+          campaign_select.appendChild(opt);  
+            
+          var x;
+          var length = campaigns.length;
+          for (x=0;x<length;x++) {
+            var campaign = campaigns[x];
+            var option = document.createElement('option');
+            option.value = campaign.launch_id;
+            option.innerText = campaign.campaign_name;
+            campaign_select.appendChild(option);
+          }
+          
+          $('#myModal').modal("hide");
+          
+        }).get_launch_campaigns(selected);
+
+      } else {
+        campaign_select.disabled = 'disabled';
+        add_campaign.disabled = 'disabled'
+        campaign_select.innerHTML = null;
+      }
+    })
+        
+    campaign_select.addEventListener('change', function(e) {
+
+      if (e.target.value != -1) {
+        $('#myModal').modal("show"); 
+        var id = this.value;
+        
+        google.script.run.withSuccessHandler(function(res, elems){
+          
+          var c_id = campaign_select.value;
+          
+          var keys = Object.keys(res);
+          
+          var length = elems.length;
+          for (var x=0;x<length;x++) {
+            var el = elems[x];
+          
+            el.removeEventListener('change', change_campaign_create);
+            if (keys == "") {
+              continue;
+            }
+            if (keys.indexOf(el.id) != -1) {
+              var value = res[el.id];
+              if (el.type == 'checkbox' && el.nodeName != 'TEXTAREA') {
+                document.getElementById(el.id).checked = value;
+              } else {
+                document.getElementById(el.id).value = value;
+              } 
+            }
+            el.addEventListener('change', change_campaign_create);
+          }
+          
+          document.getElementById('forms_display').style.display = 'initial';
+          $('#myModal').modal("hide");
+          
+        }).withUserObject(elems).get_campaign_create(id, field_names_array);   
+        
+        forms_display.style.display = 'initial';
+      } else {
+         forms_display.style.display = 'none';
+         $('#myModal').modal("hide");
+      }
+   })
+
+
+          
+  function appendData(data){
+     
+      var content_types = ['Blog Post', 'eBook', 'eGuide', 'Infographic', 'Poll'];
+      var typeNodes = document.getElementsByClassName('form-control content-type');
+      var j;
+      for (j=0;j<typeNodes.length;j++){
+        var select = typeNodes[j];
+        for (i=0;i<content_types.length;i++){
+          var opt = document.createElement('option');
+          opt.value = content_types[i];
+          opt.name = content_types[i];
+          var text = document.createTextNode(content_types[i]);
+          opt.appendChild(text);
+          select.appendChild(opt);
+        }
+      }
+  
+     var roleNodes = document.getElementsByClassName('form-control role');
+     var j;
+     for (j=0;j<roleNodes.length;j++){
+       var select = roleNodes[j];
+        for (i=0;i<data.roles.length;i++){
+          var opt = document.createElement('option');
+          opt.value = data.roles[i].id;
+          opt.name = data.roles[i].name;
+          var text = document.createTextNode(data.roles[i].name);
+          opt.appendChild(text);
+          select.appendChild(opt);
+        }
+        select.selectedIndex = j;
+      }
+         
+     var userNodes = document.getElementsByClassName('form-control user');
+     var j;
+     for (j=0;j<userNodes.length;j++){
+       var select = userNodes[j];
+        for (i=0;i<data.users.length;i++){
+          var opt = document.createElement('option');
+          opt.value = data.users[i].id;
+          opt.name = data.users[i].name;
+          var text = document.createTextNode(data.users[i].name);
+          opt.appendChild(text);
+          select.appendChild(opt);
+        }
+      }
+    }
+      
+      
+   submit.addEventListener('click', function(e){
+       $('#myModal').modal("show");
+      
+     var campaign = {};
+     var content = {};
+     var assignees = {};
+     var company = {};
+    
+     var camp = document.getElementById('campaign');
+     var cont = document.getElementById('content');
+     var ass = document.getElementById('assignees');
+    
+     var submit = document.getElementById('submit');
+     var i;
+     for (i=0;i<camp.elements.length;i++){
+       if (camp.elements[i].nodeName == 'BUTTON') {
+         continue;
+       }
+       campaign[camp.elements[i].name] = camp.elements[i].value;
+     }
+        
+     for (i=0;i<cont.elements.length;i++){
+       if (cont.elements[i].nodeName == 'BUTTON') {
+         continue;
+       }
+       var x = cont.elements[i].name.slice(cont.elements[i].name.lastIndexOf('_'));
+       if (!content[x]){
+         content[x] = {};
+       }
+       content[x][cont.elements[i].name.slice(0,cont.elements[i].name.lastIndexOf('_'))] = cont.elements[i].value;
+     }
+     for (i=0;i<ass.elements.length;i++){
+       if (ass.elements[i].nodeName == 'BUTTON') {
+         continue;
+       }
+       var x = ass.elements[i].name.slice(ass.elements[i].name.lastIndexOf('_'));
+       var name = ass.elements[i].name.slice(0,ass.elements[i].name.lastIndexOf('_'));
+       if (!assignees[x]){
+         assignees[x] = {};
+       }
+       if (!assignees[x][name]){
+         assignees[x][name] = {};
+       }
+         assignees[x][name].id = ass.elements[i].value;
+         assignees[x][name].name = ass.elements[i].name;
+            
+     }
+     company.company_name = company_select.selectedOptions[0].innerText;
+     company.company_id = company_select.value;
+     company.launch_id = campaign_select.value;
+     
+     var info = {};
+     info.content = content;
+     info.campaign = campaign;
+     info.assignees = assignees;
+     info.company = company;
+     
+     google.script.run.withSuccessHandler(function(res){
+       $('#myModal').modal("hide");
+       $('#finishedModal').modal("show");
+       window.open('https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec','_top');
+     }).storeCampaign(info);
+   })
+    
+
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Email Notifications</title> 
+    
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    
+    <base target="_top">
+    <style>    
+        
+      html {
+        height: 100%;
+      }
+      body {
+        margin-bottom: 100px;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-weight: 600;
+      }
+      p {
+        font-weight: normal;
+      }
+      .container {
+        font-family: 'Source Sans Pro', sans-serif;
+        color: 000000;
+        text-align: center;
+        align-items: center;
+        margin: 0 auto 30px auto;
+      }
+      .logo {
+        height: 80px;
+        margin-bottom: 24px;
+      }
+      #logo {
+        height: 80px;
+        width: 103px;
+      }
+      footer {
+        margin-top: 80px;
+      }
+      h4 {
+        font-size: 18px;
+        margin-bottom: 7px;
+      }
+      .tasks {
+        width: 100%;
+      }
+      .tasks:last-child {
+        margin-bottom: 50px;
+      }
+      table {
+        width: 100%;
+        table-layout: fixed;
+        margin: 0 auto;
+        text-align: left;
+        color: black !important;
+      }
+      tr {
+        line-height: 1em;
+      }
+      td {
+       vertical-align: middle !important;
+       white-space: nowrap;
+       overflow: hidden;
+      }
+      .task-name {
+        text-overflow: ellipsis;
+        
+       white-space: nowrap;
+       overflow: hidden;
+        width: 100px;
+      }
+      .content-name {
+        width: 200px;
+        text-overflow: ellipsis;
+        
+       white-space: nowrap;
+       overflow: hidden;
+      }
+      .content-type {
+      
+        padding-left: 8px;
+        width: 75px;
+      }
+      .due-on {
+        width: 75px;
+        text-align: center !important;
+      }
+      .recap-btn {
+        height: 24px;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+      .task-btn {
+        width: 150px;
+    /*    vertical-align: -20 !important; */
+      }
+      .content-link:hover {
+        cursor: pointer !important;
+      }
+      .btn-overdue {
+        background: #D61F23;
+      }
+      .btn-due-today {
+        background: #EE633C;
+      }
+      .btn-due-tomorrow {
+        background:#F49331;
+      }
+      .btn-upcoming {
+        background: #51bdff;
+      }
+      .notification {
+        margin: 0 auto 60px;
+        width: 330px;
+      }
+      .notification h4 {
+        color: #414042;
+        margin: 0 auto;
+        font-weight: normal;
+      }
+      .notification h3 {
+        font-size: 32px;
+        color: #414042;
+        margin: 0;
+        font-weight: normal;
+      }
+      .notification p {
+        color: #939598;
+        font-size: 20px;
+        margin: 0 auto 24px;
+      }
+      .content {
+        font-size: 32px;
+        margin: 54px 0;
+        color: #414042;
+      }
+      .content a:hover {
+        color: #51bdff;
+      }
+      .content-link {
+        color: #30b1ff;
+        text-decoration: none;
+      }
+      .content-link:hover {
+        color: #22AFEC;
+      }
+      .date {
+        color: #22AFEC;
+        font-size:24px;
+      }
+      .past-due h4{
+        color: #D61F23;
+      }
+      .due-today h4{
+        color: #EE633C;
+      }
+      .due-tomorrow h4{
+        color: #F49331;
+      }
+      .due-future h4{
+        color: #22AFEC;
+      }
+      .upcoming h4 {
+        color: #b3b3b3;
+      }
+      .notify {
+        color: #ffffff;
+        text-align: center;
+        background: #fc8f23;
+        border: none;
+        border-radius: 10px;
+        margin-top: 40px;
+        padding: 20px 50px;
+        font-size: 24px;
+      }
+      .notify:hover {
+       background: #f79b4c;
+       cursor: pointer !important;
+      }
+      .submit {
+        color: #ffffff;
+        text-align: center;
+        background: #5CB151;
+        border: none;
+        border-radius: 10px;
+        margin-top: 20px;
+        padding: 20px 50px;
+        font-size: 24px;
+      }
+      .submit:hover {
+       text-decoration: none;
+       font-size: 26px;
+        margin-top: 18px;
+       vertical-align: middle;
+      }
+      button a {
+       color: #ffffff !important;
+       text-decoration: none;
+      }
+      @media (min-width: 800px){
+        .container {
+          width: 576px;
+        }
+      }
+      hr {
+        margin: 150px auto;
+        border:1px black solid;
+      }
+    </style>
+  </head>
+  <body>
+  <div class="container">
+    <div class="logo">
+      <img id='logo' src='cid:logo'>
+    </div>
+    
+    <? if (type == 'notification') { ?>
+      
+      <? if (action != 'campaign_launch') { ?>
+        <div class="notification">
+          <h4>Notification</h4>
+          <p><?= campaign_name ?></p>
+        </div>
+      <? } else { ?>
+        <div class="notification">
+          <h4>Campaign Launch Notification</h4>
+          <? if (user != 'client') { ?>
+            <p><?= assignee ?>, you have been assigned to a content creation campaign for <?= companyName ?>. </p>
+          <? } else  { ?>
+            <br><p>Congratulations <?= companyName ?>!</p><p> A content creation campaign has been launched for your company.</p>
+          <? } ?>
+        </div>
+          <? if (user != 'client') { ?>
+            <button class='submit'> 
+                <a href="https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec">Take me to my dashboard!</a>
+            </button>  
+          <? } ?>
+      <? } ?>
+      
+      <? if (action == 'campaign_launch') { ?>
+        
+      <? } else if (action == 'upcoming') { ?>
+        <div class='content'>
+          <p><span id='content_name'>"<?= contentName ?>"</span></p><p>is almost ready for you to <?= contentTask ?>. Please keep an eye out for when you can begin your task.</p>
+        </div>
+      <? } else if (action == 'approved') { ?>
+        <div class='content'>
+          <p>Your last submission, <span id='content_name'>"<?= contentName ?>"</span>, was approved! Congratulations and thank you for your efforts!</p>
+        </div>
+      <? } else if (action == 'completed') { ?>
+        <div class='content'>
+          <p>Someone has completed a task! Here are some details:</p>
+          <p>Content name: <?= contentName ?> </p>
+          <p>Content task: <?= contentTask ?> </p>
+        </div>
+      <? }  else if (action == "submission") { ?>
+      
+          <div class="notification" style="margin: 40px auto;">
+            <h3>Thanks for your submission.</h3>
+            <p style="margin-top: 20px;"> You will receive an email within the next couple days to notify you if your submission was approved by the client. Thank you! </p>
+          </div>
+          <button class='submit'> 
+            <a href="https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec">Take me to my dashboard!</a>
+          </button>  
+      <? } else { ?>
+      
+        <? if (action=='assigned') { ?>
+          <div class='content'>
+            <p><span id='content_name'>"<?= contentName ?>"</span> is ready for you to <?= contentTask ?> now.</p>
+          </div>
+        <? } ?>
+        <? if (action=='rejected') { ?>
+          <div class='content'>
+            <p><span id='content_name'>"<?= contentName ?>"</span> is ready for you to make requested updates.</p><p>Please review it and make any necessary refinements.</p>
+          </div>
+        <? } ?>
+  
+        <div class='date'>
+          <p>Due on: <?= dueDate ?></p>
+        </div>
+      
+        <a href="https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec">
+          <button class='notify'>Take me to it!</button>
+        </a>
+      <? } ?>
+    <? } ?>
+    <? if (type == 'recap' ) { ?>
+    
+      <div class="notification">
+        <h4>Daily Digest</h4>
+        <p><?= first_name ?>, here's your digest for <?= parse_date(new Date(), 'mmddyy') ?></p>
+      </div>
+    
+    
+      <? data ?>  
+      <div class="tasks">
+        <? if (data.overdue.length != 0) { ?>
+            <div class="task-box past-due">
+              <div><h4>Past due!</h4></div>
+              <table>
+                <? for (var i=0;i<data.overdue.length;i++) { ?>
+                  <tr class='task'>
+                    <td class='task-name'><p> To   <?= data.overdue[i].action ?>:</p></td>
+                    <td class='content-type'><p><?= data.overdue[i].content_type ?></p></td>
+                    <td class='content-name'><p><a class='content-link' href='https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec?id=<?= data.overdue[i].doc_link ?>'><?= data.overdue[i].content_name ?></a></p></td>
+                    <td class='due-on'><p><?= data.overdue[i].due_date ?></p></td>
+                    <td class='task-btn'><a href='https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec?id=<?= data.overdue[i].doc_link ?>'><button class='recap-btn btn-overdue'> <?= data.overdue[i].action ?></button></a></td>
+                  </tr>
+                <? } ?>  
+              </table>
+            </div>
+          
+          
+        <? } ?>
+        <? if (data.due_today.length != 0) { ?>
+  
+          <div class="task-box due-today">
+            <div><h4>Due today!</h4></div>
+            <table>
+             <? for (var i=0;i<data.due_today.length;i++) { ?>
+              <tr class='task'>
+                <td class='task-name'><p> To  <?= data.due_today[i].action ?>:</p></td>
+                <td class='content-type'><p><?= data.due_today[i].content_type ?></p></td>
+                <td class='content-name'><p><a class='content-link' href='https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec?id=<?= data.due_today[i].doc_link ?>'><?= data.due_today[i].content_name ?></a></p></td>
+                <td class='due-on'><p> <?= data.due_today[i].due_date ?></p></td>
+                <td class='task-btn'><a href='https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec?id=<?= data.due_today[i].doc_link ?>'><button class='recap-btn btn-due-today'> <?= data.due_today[i].action ?></button></a></td>
+              </tr>
+              <? } ?>
+            </table>
+          </div>
+          
+        <? } ?>
+        <? if (data.due_tomorrow.length != 0) { ?>
+        
+          <div class="task-box due-tomorrow">
+            <div><h4>Due tomorrow!</h4></div>
+            <table>
+               <? for (var i=0;i<data.due_tomorrow.length;i++) { ?>
+              <tr class='task'>
+                <td class='task-name'><p> To    <?= data.due_tomorrow[i].action ?>:</p></td>
+                <td class='content-type'><p> <?= data.due_tomorrow[i].content_type ?></p></td>
+                <td class='content-name'><p><a class='content-link' href='https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec?id=<?= data.due_tomorrow[i].doc_link ?>'><?= data.due_tomorrow[i].content_name ?></a></p></td>
+                <td class='due-on'><p> <?= data.due_tomorrow[i].due_date ?></p></td>
+                <td class='task-btn'><a href='https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec?id=<?= data.due_tomorrow[i].doc_link ?>'><button class='recap-btn btn-due-tomorrow'> <?= data.due_tomorrow[i].action ?></button></a></td>
+              </tr>
+              <? } ?>
+            </table>
+          </div>
+        
+        <? } ?>
+        <? if (data.upcoming.length != 0) { ?>
+        
+        <div class="task-box upcoming">
+          <div><h4>Upcoming tasks</h4></div>
+         <table>
+              <? for (var i=0;i<data.upcoming.length;i++) { ?>
+              <tr class='task'>
+                <td class='task-name'><p> To   <?= data.upcoming[i].action ?>:</p></td>
+                <td class='content-type'><p> <?= data.upcoming[i].content_type ?></p></td>
+                <td class='content-name'><p><a class='content-link' href='https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec?id=<?= data.upcoming[i].doc_link ?>'><?= data.upcoming[i].content_name ?></a></p></td>
+                <td class='due-on'><p> <?= data.upcoming[i].due_date ?></p></td>
+                <td class='task-btn'><a href='https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec?id=<?= data.upcoming[i].doc_link ?>'><button class='recap-btn btn-upcoming'> <?= data.upcoming[i].action ?></button></a></td>
+              </tr>
+              <? } ?>
+          </table>
+        </div>
+      </div>
+      <? } ?>
+       <a href="https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec">
+          <button class='notify'>
+             Take me to my dashboard!
+          </button>  
+       </a>
+    <? } ?>
+    
+    
+      <footer class="footer">
+        <div class="container">  
+          <? if (user == 'client') { ?>
+           <span class="text-muted">To learn more about our service agreement policies, <a href="https://www.responsify.com/service-policies/" target="_blank"> visit this link</a></span>
+          <? } ?>
+          <? if (user == 'talent' || user == 'responsify') { ?>
+           <span class="text-muted">To learn more about our talent agreement policies, <a href="https://www.responsify.com/talent-policies/å" target="_blank">visit this link</a></span>
+          <? } ?>
+        </div>
+      </footer>
+   
+   
+  </div>
+  </body>
+</html>

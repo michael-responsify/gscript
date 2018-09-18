@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <style type="text/css">
+    
+    @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+    html {
+      font-family: 'Source Sans Pro', sans-serif;
+      height: 100%;
+    } 
+    body {
+      margin-bottom: 100px;
+    }
+    h1, h2, h3, h4, h5, h6, p {
+      font-weight: normal;
+    }
+    h1 {
+      margin-bottom: 16px;
+    }
+    .navbar {
+      background: #fff;
+      justify-content: flex-begin;
+      padding: 23px;
+    }
+    .navbar button {
+      margin-left: 24px;
+    }
+    .clockin {
+      position: fixed;
+      right: 0;
+      top: 20;
+    }
+    .inside {
+      padding: 33px 50px;
+    }
+    .heading {
+      font-weight: normal;
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: row;
+    }
+    .content-heading {
+      width: 75%;
+    }
+    .dashboard-btn {
+      width: 25%;
+      text-align: right;
+      padding-left: 13px;
+    }
+    .dashboard {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      height: 100%;
+    }
+    
+    .dashboard iframe {
+      flex-basis:75%;
+      flex-wrap: nowrap;
+      height: 1000px;
+      border: 1px #cccccc solid;
+      border-radius: 6px;
+    }
+    
+    .dashboard .iframe-temp img {
+      flex-basis:75%;
+      flex-wrap: nowrap;
+      height: 1000px;
+      width: 900px;
+      border: 1px #cccccc solid;
+      border-radius: 6px;
+    }
+    
+    .sidebar {
+      flex-basis: 25%;
+      text-align: center; 
+      margin: 36px 0 0 50px; 
+      display: flex; 
+      flex-direction: column; 
+      align-content: center;
+    }
+    .sidebar .sidebar-header {
+      font-size: 14px;
+      color: #999999;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar h2 {
+      margin-bottom: 30px;
+    }
+    .sidebar .form-control:not(textarea) {
+      text-align: center;
+    }
+    .sidebar textarea {
+      font-size: 12px;
+    }
+    .content-info {
+      padding: 30px 7px;
+    }
+    .content-info-box {
+      margin-bottom: 30px;
+    }
+    .checklist {
+      text-align: left;
+    }
+    .checklist label {
+      padding-left: 24px;
+    }
+    .form-check {
+      margin-bottom: 16px;
+    }
+    /* Hide the browser's default checkbox */
+    .form-check input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .form-check:hover {
+        cursor: pointer;
+    }
+    /* Create a custom checkbox */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        border: 1px #d8d8d8 solid;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    .checkmark:hover {
+      cursor: pointer;
+    }
+    
+    /* On mouse-over, add a grey background color */
+    .form-check:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+    
+    /* When the checkbox is checked, add a blue background */
+    .form-check input:checked ~ .checkmark {
+        background-color: #2196F3;
+    }
+    
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+    
+    /* Show the checkmark when checked */
+    .form-check input:checked ~ .checkmark:after {
+        display: block;
+    }
+    .form-check-label:hover {
+      cursor: pointer;
+    }
+    /* Style the checkmark/indicator */
+    .form-check .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .create-button input {
+      height: 60px;
+      width: 330px;
+    }
+    
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .buttons button {
+      margin-bottom: 24px;
+    }
+  
+    .messagebox {
+      height: 100px;
+      padding: 16px;
+      border: 1px #f1f1f1 solid;
+      border-radius: 6px;
+      overflow: auto;
+      margin-bottom: 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      transition: 0.8s;
+    }
+    .single-message {
+      margin-bottom: 20px;
+    }
+    .single-message .user-line {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+
+    .single-message .user-avatar {
+      height: 33px;
+      width: 33px;
+      border: 1px #BEBEBE solid;
+      border-radius: 7px;
+      margin-right: 16px;
+      padding: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .single-user .message-user {
+
+    }
+    .chatbox {
+      text-align: right;
+    }
+    
+    .chatbox textarea {
+      margin-bottom: 14px;
+    }
+    .content-box .message-content {
+      text-align: left;
+      margin: 0;
+      padding: 0;
+    }
+    .content-box .timestamp {
+      font-size: 10px;
+      text-align: right;
+      margin: 0;
+      padding: 0;
+    }
+    #guidelines .modal-body {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body> 
+  <div class="container-fluid full">
+    <div class='inside'>
+      <div class="heading">
+        <div class='content-heading'>
+          <h3 id='header_content_type'> - </h3>
+          <h1 id='content_title'><? id ?><?= DocumentApp.openById(id).getName() ?></h1>
+        </div>
+        <div class='dashboard-btn'>
+          <a href='https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec'><button class="btn btn-outline-info" type="button">Go to my dashboard</button></a>
+        </div>
+      </div>
+      <div class='dashboard'>
+        <? if (stage.indexOf('promote') == -1 && stage.indexOf('setup') == -1) { ?>
+          <iframe id='iframe' src="https://docs.google.com/document/d/<?= id ?>/edit" width="100%"></iframe>
+        <? } else { ?>
+          <div class='iframe-temp'> 
+           <img src='http://gdurl.com/yRAB'>  
+          </div>
+        <? } ?>
+        <div class='sidebar'>
+        <? if (stage != 'migrate' && stage != 'promote_via_email' && stage != 'promote_via_social') { ?>
+          <div class='content-info'>
+            <div class='content-info-box'>
+              <p class='sidebar-header'>Company:</p>
+              <h5 id='company_name'>-</h5>
+            </div>
+            
+            <div class='content-info-box'>
+              <p class='sidebar-header'>Campaign:</p>
+              <h5 id='campaign_name'>-</h5>
+            </div>
+            
+            <div class='content-info-box'>
+              <p class='sidebar-header'>Type:</p>
+              <h5 id='content_type'>-</h5>
+            </div>
+            
+            <div class='content-info-box'>
+              <p class='sidebar-header'>Current Stage:</p>
+              <h5 id='current_stage'>-</h5>
+            </div>
+            
+            <div class='content-info-box'>
+              <p class='sidebar-header'>Due by end of day:</p>
+              <h5 id='due_date'>-</h5>
+            </div>
+          </div>
+          <? } ?>
+          <div>
+            <div id='workflow'>
+              <div class='buttons'>
+                <? if (stage == 'setup') { ?>
+                  <a id='ndash' target='_blank'><button class='btn btn-info btn-lg' id='setup_assignment' onclick="setupAssignment()">Setup nDash Assignment</button></a>
+                  <a target='_blank'><button class="btn btn-success btn-lg" id='complete' onclick="completeTask()">I've completed this task</button></a>
+                <? } else if (stage == 'outline') { ?>
+                  <button class='btn btn-info btn-lg' id='review_guidelines' onclick="getGuidelines()">Review Guidelines</button>
+            <!--      <button class='btn btn-info btn-lg' id='check_length' onclick="checkLength()">Check Length</button>  -->
+                  <button class="btn btn-success btn-lg" id='complete' onclick="completeTask()">I've completed this task</button>
+                <? } else if (stage == 'edit') { ?>
+                  <button class='btn btn-info btn-lg' id='review_guidelines' onclick="getGuidelines()">Review Guidelines</button>
+                  <button class='btn btn-info btn-lg' id='check_keywords' onclick="checkKeywords()">Check Keywords</button>
+                  <button class="btn btn-success btn-lg" id='approve' onclick="approve()">Approve content</button>
+                  <button class="btn btn-outline-dark btn-lg" id='reject' onclick="reject()">Request revision</button>
+                <? } else if (stage == 'write') { ?>
+                  <button class='btn btn-info btn-lg' id='review_guidelines' onclick="getGuidelines()">Review Guidelines</button>
+                  <button class='btn btn-info btn-lg' id='check_keywords' onclick="checkKeywords()">Check Keywords</button>
+                  <button class='btn btn-info btn-lg' id='check_length' onclick="checkLength()">Check Length</button>
+                  <button class="btn btn-success btn-lg" id='complete' onclick="completeTask()">I've completed this task</button>
+                <? } else if (stage == 'review') { ?>
+                  <button class="btn btn-success btn-lg" id='approve' onclick="approve()">Approve content</button>
+                  <button class="btn btn-outline-dark btn-lg" id='reject' onclick="reject()">Request revision</button>
+                <? } else if (stage == 'migrate') { ?>
+                  <form class='checklist' id='checklist'>
+                    <div class="form-check">
+                      <label class="form-check-label" for="check_duplicate">
+                      <input type="checkbox" id="check_duplicate">
+                      <span class='checkmark'></span>
+                        Duplicate blog post template in CMS
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label" for="check_title">
+                      <input type="checkbox" id="check_title">
+                      <span class='checkmark'></span>
+                        Copy and paste title
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label" for="check_body">
+                      <input type="checkbox" id="check_body">
+                      <span class='checkmark'></span>
+                        Copy and paste body
+                      </label>
+                    </div>
+                    
+                    <div class="form-check">
+                      <label class="form-check-label" for="check_html">
+                      <input type="checkbox" id="check_html">
+                      <span class='checkmark'></span>
+                        Clean up and format HTML markup
+                      </label>
+                    </div>
+                    
+                    <div class='form-group'>
+                      <div class="form-check">
+                        <label class="form-check-label" for="check_image">
+                        <input type="checkbox"  id="check_image">
+                        <span class='checkmark'></span>
+                           Add Featured Image
+                        </label>
+                      </div>
+                      <div class='form-group'>
+                        <input class="form-control" type="text"  id="content_featured_img" placeholder='Permanent URL for hosted image'>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label" for="check_image_title">
+                          <input type="checkbox" id="check_image_title">
+                          <span class='checkmark'></span>
+                          Add title to image
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label" for="check_alt_text">
+                          <input type="checkbox" id="check_alt_text">
+                          <span class='checkmark'></span>
+                          Add primary keyword as image alt text
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label" for="check_seo">
+                          <input type="checkbox" id="check_seo">
+                          <span class='checkmark'></span>
+                          Complete SEO with Yoast
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label" for="check_teaser">
+                          <input type="checkbox" id="check_teaser">
+                          <span class='checkmark'></span>
+                          Write a content teaser for promotional emails
+                        </label>
+                      </div>
+                       
+                      <div class='form-group'>
+                        <textarea class="form-control" id="content_teaser" rows="4">Used for meta description, social posts... </textarea>
+                      </div>   
+                      <div class="form-check">
+                        <label class="form-check-label" for="check_permalink">
+                          <input type="checkbox" id="check_permalink">
+                          <span class='checkmark'></span>
+                          Add final permalink URL                   
+                        </label>
+                      </div>
+                          
+                      <div class='form-group'>
+                        <input class="form-control" type="text"  id="content_permalink" placeholder='Published permalink'>
+                      </div>
+                      
+                    </div>
+                  </form>
+                  <button class="btn btn-success btn-lg" id='approve' onclick="completeMigration()">Submit finalized content</button>
+                <? } else if (stage == 'publish') { ?>
+                  <button class="btn btn-success btn-lg" id='complete' onclick="completeTask()">Content has been published!</button>
+                <? } else if (stage == 'promote_via_email') { ?>
+                  <form class='checklist' id='checklist'>
+                    <div class="form-check">
+                      <label class="form-check-label" for="download_template">
+                      <input type="checkbox" id="download_template">
+                      <span class='checkmark'></span>
+                        Download and verify email template
+                      </label>
+                    </div>
+                    <div class='form-group'>
+                      <div class="form-check">
+                        <label class="form-check-label" for="upload_to_crm">
+                        <input type="checkbox"  id="upload_to_crm">
+                        <span class='checkmark'></span>
+                           Upload to email marketing automation software
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label" for="schedule_delivery">
+                          <input type="checkbox" id="schedule_delivery">
+                          <span class='checkmark'></span>
+                            Setup email for delivery through marketing software
+                        </label>
+                      </div>
+                    </div>
+                  </form>
+                  <a id='downloadEmail' download> <button class="btn btn-outline-info btn-lg"> Download email template</button></a>
+                  <button class="btn btn-success btn-lg" id='complete' onclick="completeTask()">I've completed this task</button>
+                <? } else if (stage == 'promote_via_social') { ?>
+                  <form class='checklist' id='checklist'>
+                    <div class="form-check">
+                      <label class="form-check-label" for="download_template">
+                      <input type="checkbox" id="download_template">
+                      <span class='checkmark'></span>
+                        Download and verify email template
+                      </label>
+                    </div>
+                    <div class='form-group'>
+                      <div class="form-check">
+                        <label class="form-check-label" for="upload_to_crm">
+                        <input type="checkbox"  id="upload_to_crm">
+                        <span class='checkmark'></span>
+                           Upload to email marketing automation software
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label" for="check_alt_text">
+                          <input type="checkbox" id="check_alt_text">
+                          <span class='checkmark'></span>
+                            Setup email for delivery through marketing software
+                        </label>
+                      </div>
+                    </div>
+                  </form>                
+                  <button class="btn btn-success btn-lg" id='complete' onclick="completeTask()">I've completed this task</button>
+                <? } ?>
+              </div>  
+            </div>
+          </div>  
+          <? if (stage != 'setup' && stage != 'migrate' && stage != 'promote_via_email' && stage != 'promote_via_social') { ?>
+            <div class='chatbox form-group'>
+              <div id='messagebox' class='messagebox'>
+                <div class="single-message">
+                  <div class="user-line">
+                      <div class="user-avatar"><i class="fa fa-user-astronaut" style="font-size: 27px; color: rgb(204, 204, 204);"></i></div>
+                      <p class="lead message-user">Responsify</p>
+                  </div>
+                  <div class="content-box">
+                    <p class="message-content">Hi! If you'd like to leave comments, you can select a section of text and click the "Add a comment" button that pops up to the right.<br><br>If you have any questions or need assistance, feel free to leave a comment below. We're here to help!</p><p class="timestamp">8/20/18 - 3:02:18pm</p>
+                  </div>
+                </div>
+              </div>
+              <form id='chatbox'>
+                <textarea class='form-control' placeholder='Please leave comments here...' name='content'></textarea>
+                <input type='submit' class='btn btn-info align-right'>
+              </form>
+            </div>
+          <? } ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+    
+      <!-- Guidelines Modal -->
+      <div class="guidelines modal fade" id="guidelines" tabindex="-1" role="dialog" aria-labelledby="guidelinesLabel">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+          
+            <div class="modal-header">
+              <h4 class="modal-title" id="guidelinesLabel">Guidelines</h4>
+              <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            
+            <div class="modal-body">
+              <p><strong>Campaign Goal:</strong></p><p><span id='campaignGoal'></span></p>
+              <p><strong>Campaign Description:</strong></p><p><span id='campaignDescription'></span></p>
+              <p><strong>Persona Link:</strong></p>
+              <p><a id='personaLink' target='_blank'>Visit Link</a></p>
+              <p><strong>Keyword:</strong></p><p><span id='contentKeyword'></span></p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- The Modal -->
+        <div class="modal fade" id="completed">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            
+              <!-- Modal body -->
+              <div class="modal-body">
+                Working...
+              </div>
+              
+            </div>
+          </div>
+        </div>
+  
+        <div class="modal fade" id="finishedModal">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            
+              <!-- Modal body -->
+              <div class="modal-body">
+                Thank you for your submission! The next person in the process has been notified. Please wait for further instructions...
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+      
+      <!-- Approved -->
+      
+      <div class="modal fade" id="approved">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+          
+            <!-- Modal body -->
+            <div class="modal-body">
+              Thank you! You have approved this content and it has been pushed to the next stage.
+            </div>
+  
+          </div>
+        </div>
+      </div>
+      
+       <!-- Rejected -->
+      
+       <div class="modal fade" id="rejected">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+          
+            <!-- Modal body -->
+            <div class="modal-body">
+               Oh no! We have passed along the comments you made for the writer and are working hard to get the content up to par. Please check back shortly for a re-submission.
+            </div>
+  
+          </div>
+        </div>
+      </div>
+      
+      <!-- No comments -->
+      
+       <div class="modal fade" id="nocomments">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+          
+            <!-- Modal body -->
+            <div class="modal-body">
+               Please leave comments for the writer before you can send the content back to them for edits.
+            </div>
+  
+          </div>
+        </div>
+      </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+  <script type="text/javascript"> 
+    
+    var id = <?= id ?>;
+    var stage = <?= stage ?>;
+    
+    var chat = document.querySelector('.chatbox')
+    var messagebox = document.getElementById('messagebox')
+    var chatbox = document.getElementById('chatbox');
+    
+    
+    
+    // ************** Init functions ***************
+//    window.addEventListener("beforeunload", function (e) {
+//      e.preventDefault();
+//      e.returnValue = 'You havent finished yet';
+//    });
+    
+    document.addEventListener('DOMContentLoaded', function(e){
+      
+      google.script.run.withSuccessHandler(function(info){
+        if (stage == 'promote_via_email') {
+          document.getElementById('downloadEmail').onclick = function(event){
+            var blob = new Blob([info.content.email_template_evaluated], {type: "octet/stream"}),
+                url = window.URL.createObjectURL(blob);
+            
+            this.href = url;
+            this.target = '_blank';
+            
+            // target filename
+            this.download = "[Email Template] "+info.content.content_name+'.html';
+            
+          }     
+        }
+    
+        var field_names_array = [];
+        var checklist = document.getElementById('checklist');
+    
+        if (!!checklist) {
+          var elems = checklist.elements;
+          for (var z=0;z<elems.length;z++) {
+            field_names_array.push(elems[z].id);
+          }  
+          
+          google.script.run.withSuccessHandler(function(res){
+            var keys = Object.keys(res);
+            for (var x=0;x<elems.length;x++) {
+              if (keys.indexOf(elems[x].id) != -1) {
+                var value = res[elems[x].id];
+                if (elems[x].type == 'checkbox' && elems[x].nodeName != 'TEXTAREA') {
+                  document.getElementById(elems[x].id).checked = value;
+                } else {
+                  document.getElementById(elems[x].id).value = value;
+                } 
+              }
+              elems[x].addEventListener('change', function(e){
+                if (e.target.type == 'text' || e.target.nodeName == 'TEXTAREA') {
+                  google.script.run.withSuccessHandler(function(res){console.log(res)}).migrate_check_off(id, e.target.id, e.target.value);
+                } else if (e.target.type == 'checkbox') {
+                  console.log('piss off')
+                  google.script.run.withSuccessHandler(function(res){console.log(res)}).migrate_check_off(id, e.target.id, e.target.checked);
+                }
+              })
+            }
+          }).get_migrate_checklist(id, field_names_array);
+   
+        }
+    
+        var company_name = document.getElementById('company_name');
+        var campaign_name = document.getElementById('campaign_name');
+        var content_type = document.getElementById('content_type');
+        var current_stage = document.getElementById('current_stage');
+        var due_date = document.getElementById('due_date');
+        var header_content_type = document.getElementById('header_content_type');
+        var ndash = document.getElementById('ndash');
+    
+        company_name.innerText = info.company.company_name;
+        campaign_name.innerText = info.campaign.campaign_name;
+        content_type.innerText = info.content.type;
+        header_content_type.innerText = info.content.type;
+        current_stage.innerText = info.current_stage;
+        due_date.innerText = info.due_date;
+        
+        if (stage == 'setup') {
+          ndash.href = info.content.ndash;
+        }
+        
+      }).get_content_info(id);
+    
+    })
+    
+    if (stage != 'migrate'){
+      
+      document.addEventListener('DOMContentLoaded', function(e) {
+        if (stage != 'setup') {
+          google.script.run.withSuccessHandler(function(res){
+            var messages = JSON.parse(res);
+            messagebox.style.height = '200px';
+            for (var i=0;i<messages.length;i++){
+              var message = messages[i];
+              var d = new Date(message.timestamp);
+              var xxx = d.toISOString();
+              google.script.run.withSuccessHandler(function(res,msg){
+                addMessage(res,msg);
+              }).withUserObject(message).parse_date(xxx, "message");
+            }
+          }).getMessages(id);
+        }
+      })
+      
+      
+      chatbox.addEventListener('keypress', function(e){
+        if(e.which == 13) {
+          e.preventDefault();
+          postMessage();
+        }
+      })
+      
+      chatbox.addEventListener('submit', function(e){
+        e.preventDefault();
+        
+        postMessage();
+      })   
+    } 
+    
+    // ************** Event listeners ****************
+    
+    function addMessage(res, msg){
+      
+      var box = document.createElement('div');
+      box.className = 'single-message';
+      
+      var userLine = document.createElement('div');
+      userLine.className = 'user-line';
+      var avatar = document.createElement('div');
+      avatar.className = 'user-avatar';
+      var icon = document.createElement('i');
+      icon.className = "fa fa-user-astronaut";
+      icon.style.fontSize = '27px';
+      icon.style.color = '#ccc';
+      avatar.appendChild(icon);
+      var name = document.createElement('p');
+      name.className = 'lead message-user';
+      var nameText = document.createTextNode(msg.user);
+      name.appendChild(nameText);
+      userLine.appendChild(avatar);
+      userLine.appendChild(name);               
+      
+      var divbox = document.createElement('div');
+      divbox.className = 'content-box';
+      var content = document.createElement('p');
+      content.className = 'message-content'
+      var contentText = document.createTextNode(msg.content);
+      content.appendChild(contentText);
+      var time = document.createElement('p');
+      time.className = 'timestamp'
+      var timeText = document.createTextNode(res);
+      
+      time.appendChild(timeText);
+      divbox.appendChild(content);
+      divbox.appendChild(time);
+      
+      box.appendChild(userLine);
+      box.appendChild(divbox);
+      
+      messagebox.appendChild(box);
+      messagebox.scrollTop = messagebox.scrollHeight;
+      
+    }
+    
+    function postMessage() {
+      google.script.run.withSuccessHandler(function(user){
+        
+        var message = {};
+        var textarea;
+        
+        for (var i=0;i<chatbox.elements.length;i++) {
+          if (chatbox.elements[i].name == 'content'){
+            textarea = chatbox.elements[i];
+            message[textarea.name] = textarea.value;
+            var d = new Date();
+            message['timestamp'] = d.toString();
+            message['user'] = user;
+          }
+        }
+        google.script.url.getLocation(function(location) {
+          
+          var id = location.parameters.id[0];
+          
+          if (messagebox.childNodes[0].innerText == 'Nothing to display currently.') {
+            messagebox.removeChild(messagebox.childNodes[0]);
+            messagebox.style.height = '200px';
+          }
+          
+          google.script.run.withSuccessHandler(function(message){
+            
+            google.script.run.withSuccessHandler(function(res, msg) {    
+              addMessage(res, msg) 
+            }).withUserObject(message).parse_date(message.timestamp, 'message');
+            
+          }).postMessage(id, message);
+        })
+        
+        textarea.value = "";
+      }).active_user();
+    }  
+    
+    
+    
+    
+    
+    
+    
+    // ************* Doc functions ******************         
+    
+    
+    
+    function completeTask() {
+      
+      $('#completed').modal('show');
+      google.script.run.withSuccessHandler(function(res){
+        $('#completed').modal('hide');
+        $('#finishedModal').modal('show');
+        window.open('https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec', '_top');
+      }).complete_task(id);
+    }
+    
+    function approve() {
+      $('#approved').modal('show');
+      google.script.run.withSuccessHandler(function(res){
+        $('#approved').modal('hide');
+        $('#finishedModal').modal('show');
+        window.open('https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec', '_top');
+      }).approve_task(id, true);
+    }
+    function reject() {
+      $('#rejected').modal('show');
+      google.script.run.withSuccessHandler(function(res){
+        $('#rejected').modal('hide');
+        $('#finishedModal').modal('show');
+        window.open('https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec', '_top');
+      }).reject_task(id);
+    }  
+    
+    function completeMigration() {
+      $('#completed').modal('show');
+      google.script.run.generate_email_from_template(id);
+      google.script.run.withSuccessHandler(function(res){
+        $('#completed').modal('hide');
+        $('#finishedModal').modal('show');
+        window.open('https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec', '_top');
+      }).complete_task(id);
+    }
+    
+    function checkKeywords() {
+      google.script.run.withSuccessHandler(function(res){
+        if (res[0]) {
+          window.alert(res[0] + ' | ' + res[1]);
+        } else {
+          window.alert(res[0] + ' | ' + res[1]);
+        }
+      }).check_keywords(id);
+    }
+    function getGuidelines() {
+      
+      google.script.run.withSuccessHandler(function(guidelines){
+        
+        var keyword = document.getElementById('contentKeyword');
+        var goal = document.getElementById('campaignGoal');
+        var description = document.getElementById('campaignDescription');
+        var link = document.getElementById('personaLink');
+        
+        keyword.innerText = guidelines.keyword;
+        goal.innerText = guidelines.goal;
+        description.innerText = guidelines.description;
+        link.href = guidelines.link;
+        
+        $('#guidelines').modal({
+          backdrop: false,
+          show: true
+        });
+        
+        $('#guidelines').draggable();
+        
+      }).getGuidelines(id);
+      
+    }
+    </script> 
+  </body>  
+</html> 

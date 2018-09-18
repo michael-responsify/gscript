@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style type="text/css">
+    
+      html {
+        height: 100%;
+      }
+      body {
+        font-family: 'Source Sans Pro', sans-serif;
+        margin-bottom: 100px;
+        overflow-x: scroll;
+      }
+      h1, h2, h3, h4, h5, h6, p {
+        font-weight: normal;
+      }
+      h1:first-of-type {
+        margin: 30px 0;
+      }
+      h2:first-of-type {
+        margin: 40px 0;
+      }
+      table {
+        table-layout: fixed;
+        width: 1000px;
+      }
+      .sort:hover {
+        cursor: pointer;
+      }
+      td {
+        vertical-align: middle !important;
+        font-size: 14px;
+        padding: 0;
+      }
+      .navbar {
+        justify-content: center;
+        padding: 33px 0;
+        width: 1300px;
+      }
+      .navbarlogo {
+        height: 80px;
+        width: 103px;
+      }
+      .dashboard-main {
+        padding: 0 100px 0 133px;
+        width: 1000px;
+      }
+      .table-title {
+        margin-bottom: 18px;
+      }
+      .table-headers {
+        font-size: 13px;
+        font-weight: normal;
+      }
+      .task-col {
+        width: 150px;
+      }
+      .type-col {
+        width: 100px;
+      }
+      .content-col {
+        width: 330px;
+      }
+      .campaign-col {
+        width: 300px;
+      }
+      .date-col {
+        text-align: center;
+        width: 100px;
+      }
+      .btn-col {
+        width: 150px;
+      }
+      .content_name {
+       text-overflow: ellipsis;
+
+        /* Required for text-overflow to do anything */
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .content_link {
+        text-overflow: ellipsis;
+
+        /* Required for text-overflow to do anything */
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .campaign_name {
+        text-overflow: ellipsis;
+
+        /* Required for text-overflow to do anything */
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .content_link a {
+        color: #30b1ff;
+        text-decoration: none;
+      }
+      .content_link a:hover {
+        color: #009dff;
+        text-decoration: none;
+      }
+      .due_date {
+        text-align: center;
+      }
+      .est_pub_date {
+        text-align: center;
+      }
+      .act_btn {
+        text-align: center;
+      }
+      .btn-disabled {
+        background: #D3D3D3;
+        color: white;
+      }
+      .btn-client {
+        background: #f9cf53;
+        color: white;
+      }
+      .btn-client:hover {
+        background: #f6bb09;
+      }
+      .btn-danger {
+        color: white !important;
+      }
+      .btn-warning {
+        color: white !important;
+      }
+      .unpublished {
+        color: #999999;
+      }
+      .unpublished button {
+        background: #D3D3D3;
+      }
+    </style>
+  </head>
+  <body>
+      <nav class="navbar">
+        <img src="http://gdurl.com/e4Tf" class='navbarlogo'>
+      </nav>
+      <div class='dashboard-main'>
+        
+        <h1>Content Overview</h1>
+        <h2> Hello <?= first_name ?>! </h2>
+        
+        <? for (var i=0;i<active_workflows.length;i++) { ?>
+          <div class='content-box' id='<?= active_workflows[i].task_name_mod ?>'>
+            <h3 class='table-title'><?= active_workflows[i].task_name ?></h3>
+            <table id='<?= active_workflows[i].task_name_mod ?>_list' class='table table-borderless'>
+              <thead class="table-headers">
+                <tr>
+                  <th scope="col" class="task-col">Task</th>
+                  <th scope="col" class="type-col">Type</th>
+                  <th scope="col" class='content-col sort' data-sort='content_name'>Title</th>
+                  <th scope="col" class='campaign-col sort' data-sort='campaign_name'>Campaign</th>
+                  <th scope="col" class='date-col sort' data-sort='due_date'>Due date</th>
+                  <th scope="col" class='btn-col'></th>
+                </tr>
+              </thead>
+              <tbody id='<?= active_workflows[i].task_name_mod ?>_box' class='list'>
+              
+              </tbody>
+            </table>
+          </div>
+        <? } ?>
+        <div class="content-box" id="publishSched">
+          <h3 class="table-title">Content Publishing Schedule</h3>
+          <table id="publishingList" class="table table-borderless">
+            <thead class="table-headers">
+              <tr>
+                <th scope="col" class="task-col">Task</th>
+                <th scope="col" class="type-col">Type</th>
+                <th scope="col" class="content-col sort" data-sort="content_name">Title</th>
+                <th scope="col" class="campaign-col sort" data-sort="campaign_name">Due date</th>
+                <th scope="col" class="date-col sort" data-sort="due_date">(Est) Publish Date</th>
+                <th scope="col" class="btn-col"></th>
+              </tr>
+            </thead>
+            <tbody id="publishingBox" class="list">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+      <script type='text/javascript'>
+        console.log(<?= active_workflows ?>)
+        setTimeout(function(){
+          window.open('https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec',"_top");
+        }, 180000);
+        
+        function addTask (Task, list, state) {
+            var now = new Date();
+            var tr = document.createElement('tr');
+            if (list == 'publishingBox') {
+              if (Task.is_published) {
+                tr.className = 'published';
+              } else {
+                tr.className = 'unpublished';
+              }
+            }
+            
+            var tsk = document.createElement('td');
+            tsk.className = 'task_name';
+            tsk.innerText = Task.task_name;
+            
+            var type = document.createElement('td');
+            type.className = 'content_type';
+            var typeText = document.createTextNode(Task.content_type);
+            type.appendChild(typeText);
+            
+            
+            var name = document.createElement('td');
+            name.className = 'content_link';
+            if (list == 'publishingBox') {
+              var name = document.createElement('td');
+              name.className = 'content_name';
+              var nameText = document.createTextNode(Task.content_name);
+              name.appendChild(nameText);
+            } else {
+              var nameLink = document.createElement('a');
+              nameLink.className = 'content_name';
+              nameLink.href = 'https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec?id='+Task.doc_link;
+              nameLink.target = "_top";
+              var linkText = document.createTextNode(Task.content_name);
+              nameLink.appendChild(linkText);
+              name.appendChild(nameLink);
+            }
+            
+            var campaign = document.createElement('td');
+            campaign.className = 'campaign_name';
+            campaign.appendChild(document.createTextNode(Task.campaign_name));
+            
+            var date = document.createElement('td');
+            if (list == 'publishingBox'){
+              date.className = 'est_pub_date';
+              var dateText = document.createTextNode(Task.publish_date);
+            } else {
+              date.className = 'due_date';
+              var dateText = document.createTextNode(Task.due_date);
+            }
+            date.appendChild(dateText);
+            
+            var button = document.createElement('td');
+            button.className = 'act_btn';
+            var btnLink = document.createElement('a');
+            btnLink.href = 'https://script.google.com/a/responsify.com/macros/s/AKfycbwD6P__vrvxO1qhu8LrLzqTUOkmnzYbuzPJ8XHrp5OvpF_Ub24/exec?id='+Task.doc_link;
+            btnLink.target = "_top";
+            var btn = document.createElement('button');
+            if (list == 'publishingBox'){
+              if (Task.is_published) {
+                btn.className = 'btn btn-success task_btn';
+              } else {
+                btn.className = 'btn btn-disabled task_btn';
+                btn.disabled = 'disabled';
+              }
+              btn.appendChild(document.createTextNode('View'));
+            } else {
+              if (state == 'due_today') {
+                btn.className = 'btn btn-danger btn task_btn';            
+              } else if (state == 'due_tomorrow') {
+                btn.className = 'btn btn-warning btn task_btn';
+              } else {
+                btn.className = 'btn btn-client btn task_btn';
+              }
+              btn.appendChild(document.createTextNode('Review now'));
+            }
+            btnLink.appendChild(btn);
+            button.appendChild(btnLink);
+            
+            tr.appendChild(tsk);
+            tr.appendChild(type);
+            tr.appendChild(name);
+            tr.appendChild(campaign);
+            tr.appendChild(date);
+            tr.appendChild(button);
+            
+            document.getElementById(list).appendChild(tr);
+        }
+        
+        
+        document.addEventListener('DOMContentLoaded', function(e){
+          var user = JSON.parse(<?= user ?>);
+          
+          google.script.run.withSuccessHandler(function(user_tasks){
+            
+            user_tasks = JSON.parse(user_tasks);
+            
+            var set = [];
+            
+            var i;
+            for (i=0;i<user_tasks.length;i++) {
+              
+              var item = user_tasks[i];
+              var task_name_mod = item.task_name.toLowerCase().replace(/\s/,'_');
+              
+              if (set.indexOf(task_name_mod) == -1){
+                set.push(task_name_mod);
+              }
+              
+              addTask(item, task_name_mod+"_box", item.status);
+              
+            }
+
+            for (i=0;i<set.length;i++) {
+              var options = {
+                valueNames: [ 'task_name', 'content_type', 'content_name', 'campaign_name', 'due_date']
+              };
+              
+              var list = new List(set[i].toLowerCase().replace(/\s/,'_')+"_list", options);
+              list.sort('due_date',{order: 'asc'});
+            }
+
+          }).get_tasks_by_user(user.user_id);
+          
+          google.script.run.withSuccessHandler(function(sched){
+          
+            var sched = JSON.parse(sched);
+            console.log(sched)
+            var options = {
+                valueNames: [ 'task_name', 'content_type', 'content_name', 'campaign_name', 'est_pub_date']
+              };
+              
+              var values = [];
+              
+              var cmps = Object.keys(sched);
+              
+              var i;
+              for (i=0;i<cmps.length;i++) {
+                var cmp = cmps[i];
+                var cnts = Object.keys(sched[cmp]);
+                for (var x=0;x<cnts.length;x++){
+                  var temp = cnts[x];
+                  var cnt = sched[cmp][temp];
+                  addTask(cnt, 'publishingBox');
+                }
+              }
+              
+              var publishingList = new List('publishingList', options, values);
+              publishingList.sort('est_pub_date', {order:'asc'});
+          }).get_client_publish_sched(<?= client_id ?>);
+          
+        });
+      </script>
+  </body>
+</html>
+
+
